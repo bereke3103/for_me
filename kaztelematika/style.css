@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 1650px;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+/* header start */
+
+.header {
+    padding: 46px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 194px;
+    height: 91px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.nav__items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 80px;
+}
+
+.nav__items li a {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: #181818;
+    transition: 0.15s linear;
+    position: relative;
+    transition: 0.3s linear;
+}
+
+.nav__items li a::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0C256C;
+    content: "";
+    transition: all 0.3s ease-out;
+}
+
+.nav__items li a:hover::after {
+    width: 100%;
+}
+
+.menu button {
+    padding: 19px 37px;
+    background: #0C256C;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.menu button:hover {
+    background: transparent;
+    border: 1px solid #0C256C;
+    color: #0C256C;
+}
+
+
+/* header end */
+
+
+/* main block start */
+
+.main__block-pic {
+    width: 1920px;
+}
+
+.main__block-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main__block {
+    margin-bottom: 100px;
+}
+
+
+/* main block end */
+
+
+/* our projects start */
+
+.block__title-projects {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.line-projects {
+    border: 2px solid #000000;
+    width: 100px;
+    margin-right: 30px;
+}
+
+.title__projects {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    color: #000000;
+}
+
+.all__item-projects {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 50px;
+}
+
+.pic__projects {
+    /* width: 398px;
+    height: 322px; */
+}
+
+.pic__projects img {
+    /* width: 100%;
+    height: 100%; */
+}
+
+.title-item__projects {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    margin-top: 20px;
+}
+
+.all__projects-links a {
+    padding: 20px 55px;
+    background: transparent;
+    color: #0C256C;
+    border: 1px solid rgba(12, 37, 108, 1);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+.all__projects-links a:hover {
+    background-color: #0C256C;
+    color: white;
+}
+
+.all__projects-links {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    margin-bottom: 100px;
+}
+
+
+/* our projects end */
+
+
+/* buildings start */
+
+.building {
+    display: flex;
+    gap: 21px;
+}
+
+.buildings__second-pic {
+    width: 835px;
+    height: 280px;
+}
+
+.buildings__second-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.buldings__about-title {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    width: 649px;
+}
+
+.buldings__about p {
+    font-weight: 400;
+    font-size: 18px;
+    color: #181818;
+    line-height: 30px;
+    width: 836px;
+}
+
+.buildings__about-number-item {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 50px;
+    color: #181818;
+}
+
+.buildings__block a {
+    padding: 24px 64px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    text-transform: uppercase;
+    border: 1px solid #0C256C;
+}
+
+
+/* buildings end*/
