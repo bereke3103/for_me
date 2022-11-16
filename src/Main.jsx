@@ -1,4 +1,7 @@
-function Main({ toggle }) {
+import { useAlertToggle } from './AlertContext/AlertContext';
+
+function Main() {
+  const toggle = useAlertToggle();
   return (
     <>
       <div>Привет в примере UseContext</div>
