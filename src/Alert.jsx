@@ -1,6 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AlertContext } from './App';
 
 function Alert() {
+  const alert = useContext(AlertContext);
+
+  if (!alert) return null;
   return (
     <div
       style={{

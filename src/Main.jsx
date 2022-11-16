@@ -1,8 +1,8 @@
-function Main({ clickToggleShow }) {
+function Main({ toggle }) {
   return (
     <>
       <div>Привет в примере UseContext</div>
-      <button onClick={clickToggleShow}>Показать алерт</button>
+      <button onClick={toggle}>Показать алерт</button>
     </>
   );
 }

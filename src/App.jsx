@@ -1,18 +1,23 @@
 import { useState } from 'react';
+import { createContext } from 'react';
 import Alert from './Alert';
 import './App.css';
 import Main from './Main';
 
+export const AlertContext = createContext();
+
 function App() {
-  const [toggle, setToggle] = useState(false);
-  const handleToggleShow = () => {
-    setToggle(!toggle);
-  };
+  const [alert, setAlert] = useState(false);
+
+  const toggleAlert = () => setAlert(!alert);
+
   return (
-    <div className="App">
-      <Main clickToggleShow={handleToggleShow} />
-      {toggle ? <Alert /> : null}
-    </div>
+    <AlertContext.Provider value={alert}>
+      <div className="App">
+        <Alert />
+        <Main toggle={toggleAlert} />
+      </div>
+    </AlertContext.Provider>
   );
 }
 
