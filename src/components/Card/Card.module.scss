@@ -1,4 +1,5 @@
 .card {
+    margin-bottom: 40px;
     border: 1px solid #877676a3;
     padding: 30px;
     width: 210px;
@@ -28,12 +29,16 @@
     }
 }
 
-.button {
-    background-color: white;
-    border: 1px solid #f2f2f2;
-    box-sizing: border-box;
-    border-radius: 8px;
-    height: 32px;
-    width: 32px;
+.plus {
     cursor: pointer;
 }
+
+// .button {
+//     background-color: white;
+//     border: 1px solid #f2f2f2;
+//     box-sizing: border-box;
+//     border-radius: 8px;
+//     height: 32px;
+//     width: 32px;
+//     cursor: pointer;
+// }

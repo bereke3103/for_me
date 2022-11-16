@@ -1,10 +1,16 @@
-function Drawer() {
+function Drawer({ onClose }) {
+  // const onClose = props;
   return (
-    <div style={{ display: 'none' }} className="overlay">
+    <div className="overlay">
       <div className="drawer">
         <h3 className="mb-30 d-flex justify-between ">
           Корзина
-          <img className="removeBtn cu-p" src="/img/minus.svg" alt="" />
+          <img
+            className="removeBtn cu-p"
+            src="/img/minus.svg"
+            alt=""
+            onClick={onClose}
+          />
         </h3>
 
         <div className="items" style={{ flex: 1 }}>
