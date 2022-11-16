@@ -1,11 +1,11 @@
-import { useAlertToggle } from './AlertContext/AlertContext';
+import { useAlert } from './AlertContext/AlertContext';
 
 function Main() {
-  const toggle = useAlertToggle();
+  const { toggleAlert } = useAlert();
   return (
     <>
       <div>Привет в примере UseContext</div>
-      <button onClick={toggle}>Показать алерт</button>
+      <button onClick={toggleAlert}>Показать алерт</button>
     </>
   );
 }

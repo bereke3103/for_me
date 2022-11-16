@@ -3,8 +3,9 @@ import { useAlert } from './AlertContext';
 
 function Alert() {
   const alert = useAlert();
+  console.log(alert);
 
-  if (!alert) return null;
+  if (!alert.visible) return null;
   return (
     <div
       style={{
@@ -18,6 +19,7 @@ function Alert() {
       }}
     >
       Это очень важное сообщение
+      <button onClick={alert.toggleAlert}>Убрать алерт</button>
     </div>
   );
 }
