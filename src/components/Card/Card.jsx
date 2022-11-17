@@ -2,13 +2,17 @@ import { useState } from 'react';
 import styles from '../Card/Card.module.scss';
 
 function Card(props) {
+  // console.log(props);
+  const { name, priece, onFavorite, onPlus, id } = props;
   const [isAdded, setIsAdded] = useState(false);
 
   const handlePlusClick = () => {
+    //Аргументы name и priece мы написали, потому что в в компонентах мы указали, что он принимает в себе один объект
+    onPlus({ name, priece, id });
     setIsAdded(!isAdded);
+    // addIntoBasket(console.log({ name, priece }));
   };
 
-  const { name, priece, onFavorite } = props;
   return (
     <div className={styles.card}>
       <div className={styles.favorite}>
