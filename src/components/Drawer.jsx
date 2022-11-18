@@ -1,4 +1,4 @@
-function Drawer({ onClose, items = [] }) {
+function Drawer({ onClose, items = [], removeItem }) {
   // const onClose = props;
   return (
     <div className="overlay">
@@ -14,22 +14,34 @@ function Drawer({ onClose, items = [] }) {
         </h3>
 
         <div className="items" style={{ flex: 1 }}>
-          {items.map((obj, index) => (
-            <div key={index} className="cartItem mb-20 d-flex align-center">
-              <img
-                className="mr-20"
-                width={130}
-                height={130}
-                src="/img/pic.png"
-                alt="kran"
-              />
-              <div className="mr-20">
-                <p className="mb-5">{obj.name}</p>
-                <b>{obj.priece} тенге</b>
-              </div>
-              <img className="removeBtn" src="/img/minus.svg" alt="" />
+          {items.length === 0 ? (
+            <div>
+              <h1>КОРЗИНА ПУСТАЯ</h1>
+              <button onClick={onClose}>Вернуться назад</button>
             </div>
-          ))}
+          ) : (
+            items.map((obj, index) => (
+              <div key={index} className="cartItem mb-20 d-flex align-center">
+                <img
+                  className="mr-20"
+                  width={130}
+                  height={130}
+                  src="/img/pic.png"
+                  alt="kran"
+                />
+                <div className="mr-20">
+                  <p className="mb-5">{obj.name}</p>
+                  <b>{obj.priece} тенге</b>
+                </div>
+                <img
+                  onClick={() => removeItem(obj.id)}
+                  className="removeBtn"
+                  src="/img/minus.svg"
+                  alt=""
+                />
+              </div>
+            ))
+          )}
         </div>
 
         <div className="cartTotalBlock">

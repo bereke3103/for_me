@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Drawer from './components/Drawer';
 import 'macro-css';
 import Header from './components/Header';
@@ -6,6 +7,7 @@ import Card from './components/Card/Card';
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
+  const [favoriteBasket, setFavoriteBasket] = useState([]);
   const [intoBasket, setIntoBasket] = useState([]);
   const [boots, setBoots] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -15,24 +17,54 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('https://6374f71f48dfab73a4ee5a27.mockapi.io/items')
-      .then((res) => res.json())
-      .then((boots) => setBoots(boots));
+    // fetch('https://6374f71f48dfab73a4ee5a27.mockapi.io/items')
+    //   .then((res) => res.json())
+    //   .then((boots) => setBoots(boots));
+
+    axios
+      .get('https://6374f71f48dfab73a4ee5a27.mockapi.io/items')
+      .then((res) => {
+        setBoots(res.data);
+      });
+    axios
+      .get('https://6374f71f48dfab73a4ee5a27.mockapi.io/basket')
+      .then((res) => {
+        setIntoBasket(res.data);
+      });
   }, []);
 
   const handlerAddIntoBasket = (obj) => {
-    // console.log(obj, 'handle');
+    axios
+      .post('https://6374f71f48dfab73a4ee5a27.mockapi.io/basket', obj)
+      .then((res) => {
+        console.log(res.data);
+      });
     setIntoBasket([...intoBasket, obj]);
   };
 
-  console.log(intoBasket);
+  const handleFavoriteBasket = (obj) => {
+    axios
+      .post('https://6374f71f48dfab73a4ee5a27.mockapi.io/favorite', obj)
+      .then((res) => {
+        setFavoriteBasket(res.data);
+      });
+  };
+
+  const handleRemoveItem = (id) => {
+    setIntoBasket((item) => item.filter((item) => item.id !== id));
+    axios.delete(`https://6374f71f48dfab73a4ee5a27.mockapi.io/basket/${id}`);
+  };
 
   return (
     <div className="wrapper clear">
       {openCart ? (
-        <Drawer onClose={() => setOpenCart(false)} items={intoBasket} />
+        <Drawer
+          onClose={() => setOpenCart(false)}
+          items={intoBasket}
+          removeItem={handleRemoveItem}
+        />
       ) : null}
-      <Header onOpenCart={() => setOpenCart(true)} />
+      <Header intoBasket={intoBasket} onOpenCart={() => setOpenCart(true)} />
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
           <h1>Все кроссовки</h1>
@@ -68,11 +100,11 @@ function App() {
             .map((boot, index) => {
               return (
                 <Card
+                  clickFavoriteIntoBasket={handleFavoriteBasket}
                   key={index}
                   name={boot.name}
                   priece={boot.priece}
                   addIntoBasket={handlerAddIntoBasket}
-                  onFavorite={() => alert('Вы добавили в закладки')}
                   onPlus={(obj) => handlerAddIntoBasket(obj)}
                 />
               );
