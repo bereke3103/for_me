@@ -21,7 +21,7 @@ function Card(props) {
       <img width={153} height={132} src="/img/pic.png" alt="" />
       <h4>{name}</h4>
 
-      <div className="d-flex justify-between align-center">
+      <div className="d-flex justify-between align-center top">
         <div className="d-flex flex-column ">
           <span>Цена:</span>
           <b>{priece}</b>

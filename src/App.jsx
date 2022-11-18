@@ -4,45 +4,15 @@ import 'macro-css';
 import Header from './components/Header';
 import Card from './components/Card/Card';
 
-// const boots = [
-//   {
-//     name: 'Кран первый',
-//     priece: 12000,
-//   },
-//   {
-//     name: 'Кран второй',
-//     priece: 13000,
-//   },
-//   {
-//     name: 'Кран третий',
-//     priece: 14000,
-//   },
-//   {
-//     name: 'Кран четвертый',
-//     priece: 15000,
-//   },
-//   {
-//     name: 'Кран пятый',
-//     priece: 16000,
-//   },
-//   {
-//     name: 'Кран шестой',
-//     priece: 17000,
-//   },
-//   {
-//     name: 'Кран седьмой',
-//     priece: 18000,
-//   },
-//   {
-//     name: 'Кран восьмой',
-//     priece: 19000,
-//   },
-// ];
-
 function App() {
   const [openCart, setOpenCart] = useState(false);
   const [intoBasket, setIntoBasket] = useState([]);
   const [boots, setBoots] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+
+  const onChangeSearchValue = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   useEffect(() => {
     fetch('https://6374f71f48dfab73a4ee5a27.mockapi.io/items')
@@ -68,25 +38,45 @@ function App() {
           <h1>Все кроссовки</h1>
           <div className="search-block">
             <img src="/img/search.svg" alt="Search" />
-            <input placeholder="Поиск..." />
+            <input
+              value={searchValue}
+              placeholder="Поиск..."
+              onChange={onChangeSearchValue}
+            />
+            {searchValue && (
+              <img
+                className="removeBtn cu-p"
+                src="/img/minus.svg"
+                alt=""
+                onClick={() => setSearchValue('')}
+              />
+            )}
           </div>
         </div>
+        {searchValue ? <h3>{`Поиск по запросу: ${searchValue}`}</h3> : null}
         <div
           className="d-flex"
-          style={{ flexWrap: 'wrap', justifyContent: 'center' }}
+          style={{
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
         >
-          {boots.map((boot, index) => {
-            return (
-              <Card
-                key={index}
-                name={boot.name}
-                priece={boot.priece}
-                addIntoBasket={handlerAddIntoBasket}
-                onFavorite={() => alert('Вы добавили в закладки')}
-                onPlus={(obj) => handlerAddIntoBasket(obj)}
-              />
-            );
-          })}
+          {boots
+            .filter((boot) =>
+              boot.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+            )
+            .map((boot, index) => {
+              return (
+                <Card
+                  key={index}
+                  name={boot.name}
+                  priece={boot.priece}
+                  addIntoBasket={handlerAddIntoBasket}
+                  onFavorite={() => alert('Вы добавили в закладки')}
+                  onPlus={(obj) => handlerAddIntoBasket(obj)}
+                />
+              );
+            })}
         </div>
       </div>
     </div>
